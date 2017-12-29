@@ -1,0 +1,33 @@
+{
+    "name": "@allegiant/jsonstore",
+    "version": "0.0.5",
+    "description": "Simple disk based json document storage",
+    "author": "echopoint <echopoint@tutanota.com>",
+    "contributors": [],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/allegiant-js/jsonstore/issues"
+    },
+    "homepage": "https://github.com/allegiant-js/jsonstore#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/allegiant-js/jsonstore.git"
+    },
+    "main": "index.js",
+    "engine": {
+        "node": "> 7.6"
+    },
+    "scripts": {
+        "lint": "eslint .",
+        "test": "tap test/*.js",
+        "coverage": "tap test/*.js --coverage"
+    },
+    "dependencies": {
+        "@allegiant/common": "0.0.5"
+    },
+    "devDependencies": {
+        "eslint": "^4.12.1",
+        "jsdoc": "^3.5.5",
+        "tap": "^11.0.1"
+    }
+}
