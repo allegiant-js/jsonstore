@@ -17,6 +17,7 @@ npm install @allegiant/jsonstore --save
 ## Usage
 
 ```js
+const { JSONStore } = require('@allegiant/jsonstore');
 const store = new JSONStore();
 
 store.update('foo', true);
