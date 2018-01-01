@@ -1,6 +1,6 @@
 {
     "name": "@allegiant/jsonstore",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Simple disk based json document storage",
     "author": "echopoint <echopoint@tutanota.com>",
     "contributors": [],

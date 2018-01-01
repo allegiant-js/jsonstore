@@ -58,10 +58,8 @@ class Storable {
         if (this.store === false)
             throw new Error(this.constructor.name + ": store not defined");
 
-        if (!this.needsUpdate) {
-            console.log(this.constructor.name + ": update skipped"); // eslint-disable-line
+        if (!this.needsUpdate)
             return true;
-        }
 
         if (!await this.store.update(this._id, obj || this.data))
             return false;
