@@ -14,6 +14,16 @@
 npm install @allegiant/jsonstore --save
 ```
 
+## Usage
+
+```js
+const store = new JSONStore();
+
+store.update('foo', true);
+store.get('foo'); // true
+store.destroy('foo') // undefined and destroys the data kept in foo
+```
+
 ### Copyright & License
 
 Copyright &copy; 2017 Allegiant. Distributed under the terms of the MIT License, see [LICENSE](https://github.com/allegiant-js/jsonstore/blob/master/LICENSE)
