@@ -1,6 +1,5 @@
 const path = require('path');
-const common = require('@allegiant/common');
-const expect = common.expect;
+const { genRandomToken, readJSON, writeJSON, unlink, filterDir } = require('@allegiant/common');
 
 class Storable {
     constructor(store, reset=true) {
@@ -25,7 +24,7 @@ class Storable {
         var id;
 
         do {
-            id = common.genRandomToken(32);
+            id = genRandomToken(32);
         } while(this.store.get(id));
 
         return id;
@@ -128,14 +127,14 @@ class JSONStore {
         if (!this.saveToDisk || !this.path)
             return true;
 
-        return common.writeJSON(this.docName(key), data, 'utf8');
+        return writeJSON(this.docName(key), data, 'utf8');
     }
 
     async destroy(key) {
-        if (expect(this.store[key], false))
+        if (!(this.store[key] || false))
             return false;
 
-        if (!await common.unlink(this.docName(key)))
+        if (!unlink(this.docName(key)))
             return false;
 
         this.store[key]=null;
@@ -154,7 +153,7 @@ class JSONStore {
         }
 
         console.log(":: " + this.classRef.name + ": Loading doc: ", key); // eslint-disable-line
-        data = await common.readJSON(fname);
+        data = await readJSON(fname);
         if (!data) {
             console.log("::    " +  // eslint-disable-line
                         this.classRef.name + " Store Error: Couldn't read document " + key + " from disk: ", fname);
@@ -165,7 +164,7 @@ class JSONStore {
             console.log("::    " +  // eslint-disable-line
                         this.classRef.name + " Store Error: Invalid doc: ", key);
             if (this.deleteInvalidDocs)
-                await common.unlink(fname);
+                unlink(fname);
 
             return false;
         }
@@ -175,7 +174,7 @@ class JSONStore {
     }
 
     async _reload() {
-        var list = common.filterDir(this.path, '.json'), 
+        var list = filterDir(this.path, '.json'), 
             count=0,
             i, max;
 
