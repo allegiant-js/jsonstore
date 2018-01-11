@@ -16,7 +16,7 @@ class Storable {
 
     // override this to validate your data on load
     static isValid(data=null) {
-        return (data !== null && typeof data === 'object');
+        return data != void 0 && typeof data === 'object';
     }
 
     // override this to change unique Id generation
@@ -41,7 +41,7 @@ class Storable {
     }
 
     get(key) {
-        return this.data[key] || null;
+        return this.data[key] == void 0 ? null : this.data[key];
     }
 
     set(key=null, val=null) {
